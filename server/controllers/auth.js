@@ -38,3 +38,9 @@ exports.signup = (req, res, next) => {
     }
   });
 };
+
+exports.signin = (req, res, next) => {
+  //user is already checked through passport. Just return a token
+  //get user obj from req passed by passport on done()
+  return res.send({ token: createToken(req.user) });
+};

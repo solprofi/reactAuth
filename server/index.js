@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const http = require('http');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const passportConfig = require('./services/passport');
 
 const router = require('./router');
 
