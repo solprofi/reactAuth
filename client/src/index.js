@@ -9,6 +9,7 @@ import App from './components/App';
 import Welcome from './components/Welcome';
 import SignUp from './components/auth/SignUp';
 import rootReducer from './reducers';
+import Feature from './components/Feature';
 
 const store = createStore(rootReducer, {}, applyMiddleware(reduxThunk));
 
@@ -18,6 +19,7 @@ ReactDOM.render(
       <App>
         <Route exact path='/' component={Welcome} />
         <Route exact path='/signUp' component={SignUp} />
+        <Route exact path='/feature' component={Feature} />
       </App>
     </BrowserRouter>
   </Provider>, document.getElementById('root'));
