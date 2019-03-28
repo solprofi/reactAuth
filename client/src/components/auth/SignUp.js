@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+
+import * as actions from '../../actions';
 
 class SignUp extends Component {
   onSubmit = formProps => {
-    console.log(formProps);
+    this.props.signUp(formProps);
   }
 
   render() {
@@ -14,6 +18,7 @@ class SignUp extends Component {
         <fieldset>
           <label htmlFor="email">Email</label>
           <Field
+            id='email'
             name='email'
             type='text'
             component='input'
@@ -23,6 +28,7 @@ class SignUp extends Component {
         <fieldset>
           <label htmlFor="password">Password</label>
           <Field
+            id='password'
             name='password'
             type='password'
             component='input'
@@ -35,4 +41,7 @@ class SignUp extends Component {
   }
 }
 
-export default reduxForm({ form: 'signUp' })(SignUp);
+export default compose(
+  connect(null, actions), reduxForm({ form: 'signUp' })
+)(SignUp);
+

@@ -5,6 +5,7 @@ const http = require('http');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passportConfig = require('./services/passport');
+const cors = require('cors');
 
 const router = require('./router');
 
@@ -14,6 +15,7 @@ mongoose.connect('mongodb://localhost/auth');
 //app setup
 const app = express();
 app.use(morgan('combined'));
+app.use(cors());
 app.use(bodyParser.json({ type: '*/*' }));
 router(app);
 
