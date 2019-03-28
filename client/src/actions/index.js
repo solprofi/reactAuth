@@ -4,11 +4,14 @@ import axios from 'axios';
 export const signUp = (formProps, callback) => async dispatch => {
   try {
     const response = await axios.post('http://localhost:3333/signup', formProps);
-
+    const { token } = response.data;
     dispatch({
       type: AUTH_USER,
-      payload: response.data.token,
+      payload: token,
     });
+
+    localStorage.setItem('token', token);
+
     callback();
   } catch (e) {
     dispatch({
@@ -16,4 +19,12 @@ export const signUp = (formProps, callback) => async dispatch => {
       payload: 'User already exists',
     });
   }
+};
+
+export const signOut = () => {
+  localStorage.removeItem('token');
+  return {
+    type: AUTH_USER,
+    payload: '',
+  };
 };
