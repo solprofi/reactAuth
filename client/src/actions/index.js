@@ -28,3 +28,23 @@ export const signOut = () => {
     payload: '',
   };
 };
+
+export const signIn = (formProps, callback) => async dispatch => {
+  try {
+    const response = await axios.post('http://localhost:3333/signIn', formProps);
+    const { token } = response.data;
+    dispatch({
+      type: AUTH_USER,
+      payload: token,
+    });
+
+    localStorage.setItem('token', token);
+
+    callback();
+  } catch (e) {
+    dispatch({
+      type: AUTH_ERROR,
+      payload: 'Invalid login credentials',
+    });
+  }
+};
