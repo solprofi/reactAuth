@@ -23,7 +23,7 @@ class Header extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
         <Link to='/'>Redux Auth </Link>
         {this.renderLinks()}
       </div>
